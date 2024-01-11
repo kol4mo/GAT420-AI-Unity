@@ -3,6 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class AIAgent : MonoBehaviour {
-    public AIMovement movemen = null;
+    public AIMovement movement = null;
 
 }
