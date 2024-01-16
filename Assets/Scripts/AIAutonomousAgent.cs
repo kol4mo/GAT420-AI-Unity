@@ -35,7 +35,9 @@ public class AIAutonomousAgent : AIAgent {
 			}
 		}
 
-		transform.position = Utilities.Wrap(transform.position, new Vector3(-10, -10, -10), new Vector3(10, 10, 10));
+		transform.position = Utilities.Wrap(transform.position, new Vector3(55, -10, 20), new Vector3(80, 10, 70));
+		transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+		transform.rotation.SetEulerAngles(0, Mathf.Deg2Rad * transform.rotation.eulerAngles.y, 0);
 	}
 
 	private Vector3 Seek(GameObject target) {
