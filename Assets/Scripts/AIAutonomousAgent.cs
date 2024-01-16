@@ -4,9 +4,10 @@ using System.Resources;
 using UnityEngine;
 
 public class AIAutonomousAgent : AIAgent {
-	public AIPerception seekPerception = null;
-	public AIPerception fleePerception = null;
-	public AIPerception flockPerception = null;
+	[SerializeField] AIPerception seekPerception = null;
+    [SerializeField] AIPerception fleePerception = null;
+    [SerializeField] AIPerception flockPerception = null;
+    [SerializeField] AIPerception ObstaclePerception = null;
 
 	private void Update() {
 		//seek
@@ -35,9 +36,24 @@ public class AIAutonomousAgent : AIAgent {
 			}
 		}
 
-		transform.position = Utilities.Wrap(transform.position, new Vector3(55, -10, 20), new Vector3(80, 10, 70));
-		transform.position = new Vector3(transform.position.x, 0, transform.position.z);
-		transform.rotation.SetEulerAngles(0, Mathf.Deg2Rad * transform.rotation.eulerAngles.y, 0);
+		//obstacle avoidance
+		if (ObstaclePerception != null) {
+			if (((AIRaycastPerception)ObstaclePerception).CheckDirection(Vector3.forward)) {
+				Vector3 open = Vector3.zero;
+				if (((AIRaycastPerception)ObstaclePerception).GetOpenDirection(ref open)) {
+					movement.ApplyForce(GetSteeringForce(open) * 5);
+				}
+
+			}
+		}
+
+		Vector3 acceleration = movement.Acceleration;
+		acceleration.y = 0;
+		movement.Acceleration = acceleration;
+
+		//transform.position = Utilities.Wrap(transform.position, new Vector3(55, -10, 20), new Vector3(80, 10, 70));
+		//transform.position = new Vector3(transform.position.x, 0, transform.position.z);
+		//transform.rotation.SetEulerAngles(0, Mathf.Deg2Rad * transform.rotation.eulerAngles.y, 0);
 	}
 
 	private Vector3 Seek(GameObject target) {

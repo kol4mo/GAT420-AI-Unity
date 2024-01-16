@@ -7,7 +7,7 @@ public class AIDistancePerception : AIPerception {
 	public override GameObject[] GetGameObjects() {
 		List<GameObject> result = new List<GameObject>();
 
-		Collider[] colliders = Physics.OverlapSphere(transform.position, Distance);
+		Collider[] colliders = Physics.OverlapSphere(transform.position, Distance, layerMask);
 		foreach (Collider collider in colliders) {
 			//check if collision is self, skip if so
 			if (collider.gameObject == gameObject) continue;

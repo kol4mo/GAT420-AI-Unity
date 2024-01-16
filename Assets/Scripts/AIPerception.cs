@@ -6,6 +6,7 @@ public abstract class AIPerception : MonoBehaviour {
     [SerializeField] string tagName = "";
     [SerializeField] float distance = 1;
     [SerializeField] float maxAngle = 45;
+    [SerializeField] protected LayerMask layerMask = Physics.AllLayers;
 
     public string TagName { get { return tagName; } }
     public float Distance { get { return distance; } }

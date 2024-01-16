@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7386334160835878714}
   - component: {fileID: 2604995899646148334}
   - component: {fileID: 7896083491334773214}
-  - component: {fileID: 3715057451883570944}
+  - component: {fileID: 2657533125980929230}
   - component: {fileID: 621127013609961900}
   - component: {fileID: 6255504358235473208}
   m_Layer: 0
@@ -51,8 +51,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movement: {fileID: 7896083491334773214}
   seekPerception: {fileID: 0}
-  fleePerception: {fileID: 621127013609961900}
-  flockPerception: {fileID: 3715057451883570944}
+  fleePerception: {fileID: 0}
+  flockPerception: {fileID: 621127013609961900}
+  ObstaclePerception: {fileID: 2657533125980929230}
 --- !u!114 &7896083491334773214
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -69,7 +70,26 @@ MonoBehaviour:
   minSpeed: 5
   maxForce: 5
   turnRate: 90
---- !u!114 &3715057451883570944
+--- !u!114 &2657533125980929230
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760529272082791265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9f8d9ba8a8b1f14aa2ce4529499eff1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  tagName: Agent02
+  distance: 5
+  maxAngle: 80
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 72
+  numRays: 10
+--- !u!114 &621127013609961900
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -84,21 +104,9 @@ MonoBehaviour:
   tagName: Agent02
   distance: 1
   maxAngle: 180
---- !u!114 &621127013609961900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6760529272082791265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11d8dda93d0865246abaa515d74fa3ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagName: Agent03
-  distance: 1
-  maxAngle: 180
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 4294967295
 --- !u!136 &6255504358235473208
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -168,6 +176,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1584092720678730758, guid: 4ab29f5bad2641049ba324c9a7abe887, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1584092720678730761, guid: 4ab29f5bad2641049ba324c9a7abe887, type: 3}
+      propertyPath: m_LODs.Array.data[3].screenRelativeHeight
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1584092720678730763, guid: 4ab29f5bad2641049ba324c9a7abe887, type: 3}
