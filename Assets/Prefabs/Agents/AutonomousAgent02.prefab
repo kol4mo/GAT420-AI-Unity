@@ -83,12 +83,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tagName: Agent02
-  distance: 5
+  distance: 5.01
   maxAngle: 80
   layerMask:
     serializedVersion: 2
     m_Bits: 72
-  numRays: 10
+  numRays: 5
 --- !u!114 &621127013609961900
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -4,18 +4,30 @@ using System.Linq;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class AIRaycastPerception : AIPerception {
+public class AISpherecastPerception : AIPerception {
 
     [SerializeField][Range(2, 50)] int numRays = 2;
+    [SerializeField][Range(0.1f, 5)] float radius = 0.5f;
+	public void OnDrawGizmos() {
+		Vector3[] directions = Utilities.GetDirectionsInCircle(numRays, MaxAngle);
+        foreach (Vector3 direction in directions) {
 
-    public override GameObject[] GetGameObjects() {
+            Ray ray = new Ray(transform.position, transform.rotation * direction);
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(ray.origin + ray.direction * Distance, radius);
+        }
+	}
+
+
+
+	public override GameObject[] GetGameObjects() {
         List<GameObject> result = new List<GameObject>();
 
         Vector3[] directions = Utilities.GetDirectionsInCircle(numRays, MaxAngle);
         foreach (Vector3 direction in directions) {
 
             Ray ray = new Ray(transform.position, transform.rotation * direction);
-            if (Physics.Raycast(ray, out RaycastHit raycasthit, Distance)) {
+            if (Physics.SphereCast(ray, radius, out RaycastHit raycasthit, Distance)) {
                 Debug.DrawRay(ray.origin, ray.direction * raycasthit.distance, Color.blue);
                 //check if collision is self, skip if so
                 if (raycasthit.collider.gameObject == gameObject) continue;
@@ -36,7 +48,7 @@ public class AIRaycastPerception : AIPerception {
             // cast ray from transform position towards direction (use game object orientation)
             Ray ray = new Ray(transform.position, transform.rotation * direction);
             // if there is NO raycast hit then that is an open direction
-            if (!Physics.Raycast(ray, out RaycastHit raycastHit, Distance, layerMask)) {
+            if (!Physics.SphereCast(ray,radius, out RaycastHit raycastHit, Distance, layerMask)) {
                 Debug.DrawRay(ray.origin, ray.direction * Distance, Color.green);
                 // set open direction
                 openDirection = ray.direction;
@@ -52,7 +64,7 @@ public class AIRaycastPerception : AIPerception {
         // create ray in direction (use game object orientation)
         Ray ray = new Ray(transform.position, transform.rotation * direction);
         // check ray cast
-        return Physics.Raycast(ray, Distance, layerMask);
+        return Physics.SphereCast(ray,radius, Distance, layerMask);
 
     }
 }
