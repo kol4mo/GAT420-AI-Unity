@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7386334160835878714}
-  - component: {fileID: 2604995899646148334}
-  - component: {fileID: 7896083491334773214}
-  - component: {fileID: 2657533125980929230}
-  - component: {fileID: 621127013609961900}
   - component: {fileID: 6255504358235473208}
+  - component: {fileID: 6862604186121581687}
+  - component: {fileID: -5875959006434086981}
+  - component: {fileID: 1787665156183584968}
+  - component: {fileID: 1507872541454988255}
   m_Layer: 0
   m_Name: AutonomousAgent02
   m_TagString: Agent02
@@ -37,76 +37,6 @@ Transform:
   - {fileID: 8483430087261067132}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2604995899646148334
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6760529272082791265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: df2847cd8bd31194591651f0fc36ecf8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movement: {fileID: 7896083491334773214}
-  seekPerception: {fileID: 0}
-  fleePerception: {fileID: 0}
-  flockPerception: {fileID: 621127013609961900}
-  ObstaclePerception: {fileID: 2657533125980929230}
---- !u!114 &7896083491334773214
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6760529272082791265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5d450e40d45ee0548a3dae35befbf37e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxSpeed: 5
-  minSpeed: 5
-  maxForce: 5
-  turnRate: 90
---- !u!114 &2657533125980929230
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6760529272082791265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f8d9ba8a8b1f14aa2ce4529499eff1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagName: Agent02
-  distance: 5.01
-  maxAngle: 80
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 72
-  numRays: 5
---- !u!114 &621127013609961900
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6760529272082791265}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 11d8dda93d0865246abaa515d74fa3ac, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  tagName: Agent02
-  distance: 1
-  maxAngle: 180
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
 --- !u!136 &6255504358235473208
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -130,6 +60,78 @@ CapsuleCollider:
   m_Height: 1.2604029
   m_Direction: 2
   m_Center: {x: 0, y: 0.33407533, z: -0.028380752}
+--- !u!54 &6862604186121581687
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760529272082791265}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!114 &-5875959006434086981
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760529272082791265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f163819a24349c44eb64bf6806da87e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: 1507872541454988255}
+  path: {fileID: 1787665156183584968}
+  startNode: {fileID: 0}
+--- !u!114 &1787665156183584968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760529272082791265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c042d8c4a67f9ed4e8f5f17a50af86e1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  agent: {fileID: -5875959006434086981}
+  pathType: 2
+--- !u!114 &1507872541454988255
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6760529272082791265}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d450e40d45ee0548a3dae35befbf37e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxSpeed: 5
+  minSpeed: 5
+  maxForce: 35.2
+  turnRate: 90
 --- !u!1001 &6935791195823598458
 PrefabInstance:
   m_ObjectHideFlags: 0

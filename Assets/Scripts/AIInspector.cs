@@ -17,7 +17,7 @@ public class AIInspector : EditorWindow {
 			Camera camera = Camera.main;
 			GameObject go = Selection.activeGameObject;
 
-			if (go.TryGetComponent<AINavAgent>(out AINavAgent agent)) {
+			if (go.TryGetComponent<AIAgent>(out AIAgent agent)) {
 				camera.transform.parent = agent.transform;
 				camera.transform.localPosition = Vector3.back * 5 + Vector3.up * 2;
 				camera.transform.localRotation = Quaternion.identity;
