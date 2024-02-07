@@ -4,13 +4,15 @@ using UnityEngine;
 
 public class AIHitState : AIState {
 
-	float timer = 0;
 	public AIHitState(AIStateAgent agent) : base(agent) {
+		AIStateTransition transition = new AIStateTransition(nameof(AIIdleState));
+		transition.AddCondition(new FloatCondition(agent.timer, Condition.Predicate.LESS, 0));
+		transitions.Add(transition);
 	}
 
 	public override void OnEnter() {
 		agent.animator?.SetTrigger("Hit");
-		timer = Time.time + 0.5f;
+		agent.timer.value = 0.5f;
 	}
 
 	public override void OnExit() {
@@ -18,8 +20,5 @@ public class AIHitState : AIState {
 	}
 
 	public override void OnUpdate() {
-		if (Time.time > timer) {
-			agent.stateMachine.SetState(nameof(AIIdleState));
-		}
 	}
 }

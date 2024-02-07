@@ -42,8 +42,8 @@ public class AIStateAgent : AIAgent {
 		timer.value -= Time.deltaTime;
 		destinationDistance.value = Vector3.Distance(transform.position, movement.Destination);
 
-		var enemies = enemyPerception.GetGameObjects();
-		enemySeen.value = (enemies.Length > 0);
+		var enemies = enemyPerception?.GetGameObjects();
+		enemySeen.value = (enemies != null && enemies.Length > 0);
 		if (enemySeen) {
 			enemy = enemies[0].TryGetComponent(out AIStateAgent stateAgent) ? stateAgent : null;
 			enemyDistance.value = Vector3.Distance(transform.position, enemy.transform.position);
@@ -55,6 +55,13 @@ public class AIStateAgent : AIAgent {
 			stateMachine.SetState(nameof(AIDeathState));
 		}
 		animator?.SetFloat("Speed", movement.Velocity.magnitude);
+
+		//check for transition
+		foreach (var transition in stateMachine.currentState.transitions) {
+			if (transition.ToTransition()) {
+				stateMachine.SetState(transition.nextState);
+			}
+		}
 		stateMachine.Update();
 	}
 

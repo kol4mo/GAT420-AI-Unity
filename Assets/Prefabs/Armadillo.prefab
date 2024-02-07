@@ -186,7 +186,18 @@ MonoBehaviour:
   enemyPerception: {fileID: 0}
   friendlyPerception: {fileID: -2096923508704935958}
   ScaredPerception: {fileID: 1358828810331357672}
-  health: 100
+  health:
+    value: 10
+  timer:
+    value: 0
+  destinationDistance:
+    value: 0
+  enemySeen:
+    value: 0
+  enemyDistance:
+    value: 0
+  enemyHealth:
+    value: 0
 --- !u!114 &5579135690934679286
 MonoBehaviour:
   m_ObjectHideFlags: 0
